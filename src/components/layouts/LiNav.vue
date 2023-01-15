@@ -32,17 +32,39 @@ export default defineComponent({
 @import "@/assets/css/var.scss";
 
 .li-nav {
-  width: 100%;
+  flex: 1;
+  display: flex;
+
+  text-transform: uppercase;
+  user-select: none;
+
   li {
-    line-height: 2rem;
-    font-size: 1rem;
-    color: $color-grey;
-    border-bottom: none;
-    cursor: pointer;
+    -webkit-app-region: no-drag;
+    font-size: 18px;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 6px;
+    padding: 6px 10px;
+    color: var(--color-text);
+    transition: 0.2s;
+    -webkit-user-drag: none;
+    margin: {
+      right: 12px;
+      left: 12px;
+    }
+
+    &:hover {
+      background: var(--color-secondary-bg-for-transparent);
+    }
+
+    &:active {
+      transform: scale(0.92);
+      transition: 0.2s;
+    }
   }
+
   li.active {
-    color: $color-black;
-    font-weight: 600;
+    color: var(--color-primary);
   }
 }
 

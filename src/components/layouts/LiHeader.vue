@@ -9,18 +9,18 @@
       <span>{{ musicName }}</span>
     </div>
     <div class="navigation-buttons">
-      <Button-Icon @click.native="go('back')"><el-icon :size="20"><ArrowLeftBold /></el-icon></Button-Icon>
+      <Button-Icon @click.native="go('back')"><el-icon :size="20"><ArrowLeftBold/></el-icon></Button-Icon>
       <button-icon @click.native="go('forward')"><el-icon :size="20"><ArrowRightBold /></el-icon></button-icon>
     </div>
 
 
 
-
     <div class="navigation-links">
       <router-link to="/" :class="{ active: $route.name === 'home' }">首页</router-link>
-      <router-link to="/explore" :class="{ active: $route.name === 'explore' }">歌单</router-link>
-      <router-link to="/library" :class="{ active: $route.name === 'library' }">歌手</router-link>
+      <router-link to="/song-sheet" :class="{ active: $route.name === 'song-sheet' }">发现</router-link>
+      <router-link to="/singer" :class="{ active: $route.name === 'singer' }">歌手</router-link>
     </div>
+
 
     <!--    <li-header-nav class="li-header-nav" :styleList="headerNavList" :activeName="activeNavName" @click="goPage"></li-header-nav>-->
     <!--搜索框-->

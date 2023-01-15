@@ -1,15 +1,15 @@
 <template>
-  <el-container>
+  <el-container >
     <el-header>
       <li-header></li-header>
     </el-header>
-    <el-main>
+    <main>
       <router-view/>
       <li-current-play></li-current-play>
       <li-play-bar></li-play-bar>
       <li-scroll-top></li-scroll-top>
       <li-audio></li-audio>
-    </el-main>
+    </main>
     <el-footer>
       <li-footer></li-footer>
     </el-footer>
@@ -49,5 +49,57 @@ window.addEventListener("beforeunload", () => {
 .el-main {
   padding-left: 0;
   padding-right: 0;
+  //padding: 64px 5vw 96px 5vw;;
+}
+
+@mixin changeWidth($padding:10vw) {
+  .el-header {
+    padding: 0 $padding;
+  }
+
+  .el-container {
+    .main {
+      padding: 24px $padding 54px $padding;
+
+      .li-play-bar {
+        padding: 0 $padding;
+      }
+    }
+  }
+}
+
+#app {
+  width: 100%;
+  transition: all 0.4s;
+}
+
+//main {
+//  top: 0;
+//  bottom: 0;
+//  right: 0;
+//  left: 0;
+//  overflow: auto;
+//  padding: 64px 10vw 96px 10vw;
+//  box-sizing: border-box;
+//  scrollbar-width: none; // firefox
+//}
+//
+//@media (max-width: 1336px) {
+//  main {
+//    padding: 64px 5vw 96px 5vw;
+//  }
+//}
+//
+//main::-webkit-scrollbar {
+//  width: 0px;
+//}
+
+.slide-up-enter-active,
+.slide-up-leave-active {
+  transition: transform 0.4s;
+}
+.slide-up-enter,
+.slide-up-leave-to {
+  transform: translateY(100%);
 }
 </style>

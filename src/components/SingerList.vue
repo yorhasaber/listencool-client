@@ -1,11 +1,6 @@
 <template>
   <div class="play-list">
-    <div class="play-title" v-if="title">{{ title }}
-      <div class="title">
-        <router-link to="/song-sheet">更多></router-link>
-      </div>
-    </div>
-
+    <div class="play-title" v-if="title">{{ title }}</div>
     <ul class="play-body">
       <li class="card-frame" v-for="(item, index) in playList" :key="index">
         <div class="card" @click="goAblum(item)">
@@ -85,13 +80,28 @@ export default defineComponent({
 
 .card-frame {
   .card {
+    //position: relative;
+    //height: 0;
+    //padding-bottom: 100%;
+    //overflow: hidden;
+    //border-radius: 50%;
+    //margin: 0 auto;
+
     position: relative;
-    height: 0;
-    padding-bottom: 100%;
+    width: 200px;
+    height: 200px;
     overflow: hidden;
-    border-radius: 5px;
+    border-radius: 50%;  /* Change to 50% for a circular shape */
+    margin: 0 auto;
+
+    //position: relative;
+    //height: 0;
+    //padding-bottom: 80%; /* Change the padding-bottom to 50% */
+    //overflow: hidden;
+    //border-radius: 50%;  /* Change to 50% for a circular shape */
 
     .card-img {
+
       width: 100%;
       transition: all 0.4s ease;
     }
@@ -106,6 +116,7 @@ export default defineComponent({
     margin: 0.5rem 0;
     font-weight: 600;
     line-height: 20px;
+    text-align: center;
   }
 
   &:hover .card-img {
@@ -146,21 +157,6 @@ export default defineComponent({
   .card-frame {
     width: 46%;
     margin: 0.5rem 2%;
-  }
-}
-
-.title {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 20px;
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--color-text);
-  a {
-    font-size: 13px;
-    font-weight: 600;
-    opacity: 0.68;
   }
 }
 </style>

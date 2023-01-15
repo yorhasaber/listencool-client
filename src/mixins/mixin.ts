@@ -25,6 +25,7 @@ export default function () {
 
   // 获取歌曲名
   function getSongTitle(str) {
+    console.log(str.split("-")[1]);
     return str.split("-")[1];
   }
 
