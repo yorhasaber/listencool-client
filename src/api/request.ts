@@ -5,7 +5,7 @@ import router from "@/router"
 let baseURL = import.meta.env.VITE_APP_BASE_URL;
 console.log("@@@@@@@");
 console.log(baseURL);
-const BASE_URL = axios.create({
+const service = axios.create({
   withCredentials: true,
   timeout: 15000,
   baseURL: (import.meta.env.VITE_APP_BASE_URL) as any,
@@ -15,8 +15,9 @@ axios.defaults.timeout = 5000; // 超时时间设置
 axios.defaults.withCredentials = false; // true允许跨域
 axios.defaults.baseURL = baseURL;
 // Content-Type 响应头
-axios.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded;charset=UTF-8";
-
+axios.defaults.headers.post["Content-Type"] = "application/json";
+//axios.defaults.headers.common['Content-Type'] = "application/x-www-form-urlencoded;charset=UTF-8";
+// axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('access_token')}`;
 // 响应拦截器
 axios.interceptors.response.use(
   (response) => {

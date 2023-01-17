@@ -68,6 +68,8 @@
   --color-primary-bg-for-transparent: rgba(189, 207, 255, 0.28);
   --color-secondary-bg-for-transparent: rgba(209, 209, 214, 0.28);
   --html-overflow-y: overlay;
+
+
 }
 
 #app,
@@ -77,9 +79,9 @@ input {
   Source Han Sans SC, Noto Sans CJK SC, WenQuanYi Micro Hei, sans-serif,
   microsoft uighur;
 }
-body {
-  background-color: var(--color-body-bg);
-}
+//body {
+//  background-color: var(--color-body-bg);
+//}
 
 html {
   overflow-y: var(--html-overflow-y);
@@ -91,12 +93,12 @@ select,
 button {
   font-family: inherit;
 }
-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  user-select: none;
-}
+//button {
+//  background: none;
+//  border: none;
+//  cursor: pointer;
+//  user-select: none;
+//}
 input,
 button {
   &:focus {

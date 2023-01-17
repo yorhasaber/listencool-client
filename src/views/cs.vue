@@ -1,6 +1,76 @@
+<template>
+  <body>
+
+  <el-button plain>Plain</el-button>
+  <el-button type="primary" plain>Primary</el-button>
+  <div id="page" class="site">
+    <div class="container">
+      <div class="login">
+        <div class="hero">
+          <h1>你好 音乐 <br>Hello Music</h1>
+          <p>欢迎来到Listen Cool音乐平台<br>如果你没有账号<br>可以<a href="#">点击这里</a>进行注册.</p>
+        </div>
+        <div class="main">
+          <form action="">
+            <p>
+              <input type="email" placeholder="用户名">
+            </p>
+            <p>
+              <input type="email" placeholder="用户名">
+            </p>
+            <p>
+              <input type="email" placeholder="用户名">
+            </p>
+            <p class="password">
+              <input type="password" placeholder="密码">
+              <i class="ri-eye-off-line"></i>
+              <a href="#">找回密码</a>
+            </p>
+            <p>
+              <input type="submit" class="submit" value="登录">
+            </p>
+          </form>
+          <div class="options">
+            <div class="separator">
+              <p>使用其他方式登录</p>
+            </div>
+            <ul>
+              <li><a href="#"><i class="ri-smartphone-fill ri-2x"></i></a></li>
+              <li><a href="#"><i class="ri-playstation-fill ri-2x"></i></a></li>
+              <li><a href="#"><i class="ri-xbox-fill ri-2x"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </body>
+</template>
+
+<script lang="ts">
+import {defineComponent} from 'vue'
+
+export default defineComponent({
+  setup() {
+    return {}
+  }
+})
+</script>
+
+<style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@500&display=swap');
 /*用中文替换原先英文字体*/
+:root {
+  --primary-color: #4460f1;
+  --white-color: #ffffff;
 
+  --light-text-color: #9398b3;
+  --light-bg-color: #f2f4ff;
+  --dark-color: #333333;
+
+  --background-color: #fcfcff;
+}
 
 * {
   margin: 0;
@@ -12,7 +82,7 @@
 }
 
 body {
-  font-family: 'Noto Sans SC', sans-serif;
+  font-family: 'Noto Sans SC', sans-serif ;
   font-size: 16px;
   font-weight: 400;
   line-height: 1.8;
@@ -20,6 +90,7 @@ body {
   background-color: #fcfcff;
   user-select: none;
   -webkit-user-drag: none;
+
 }
 
 a {
@@ -74,20 +145,20 @@ h1 {
   left: 0;
   width: 280px;
   height: 100px;
-  background: linear-gradient(to right, #4460f1, #c471ed, #f64f59);
+  background: linear-gradient(to right, var(--primary-color), #c471ed, #f64f59);
   z-index: -1;
   filter: blur(70px);
 }
 
 .hero a {
   font-weight: 500;
-  color: #4460f1;
+  color: var(--primary-color);
   transition: color .3s;
 }
 
 .hero a:hover,
 form .password a:hover {
-  color: #333333;
+  color: var(--dark-color);
   text-decoration: underline;
 }
 
@@ -119,13 +190,13 @@ form input {
 }
 
 input::placeholder {
-  color: #333333;
+  color: var(--dark-color);
   font-family: 'Noto Sans SC', sans-serif;
   font-size: inherit;
 }
 
 form input:not(.submit) {
-  background-color: #f2f4ff;
+  background-color: var(--light-bg-color);
 }
 
 form .password i {
@@ -134,28 +205,28 @@ form .password i {
   right: 20px;
   margin-top: -8px;
   line-height: 1;
-  color: #9398b3;
+  color: var(--light-text-color);
   cursor: pointer;
 }
 
 form .password a {
   font-size: 13px;
-  color: #9398b3;
+  color: var(--light-text-color);
   float: right;
   margin: 5px 20px 0 0;
 }
 
 form input.submit {
   font-weight: 700;
-  color: #ffffff;
-  background-color: #4460f1;
-  box-shadow: #4460f1 0 20px 30px -10px;
+  color: var(--white-color);
+  background-color: var(--primary-color);
+  box-shadow: var(--primary-color) 0 20px 30px -10px;
   cursor: pointer;
   transition: box-shadow .3s;
 }
 
 form input.submit:hover {
-  box-shadow: #4460f1 0 10px 30px -10px;
+  box-shadow: var(--primary-color) 0 10px 30px -10px;
 }
 
 .separator {
@@ -169,7 +240,7 @@ form input.submit:hover {
   top: 50%;
   width: 100%;
   height: 1px;
-  background-color: #9398b3;
+  background-color: var(--light-text-color);
   opacity: .3;
   z-index: 1;
 }
@@ -178,8 +249,8 @@ form input.submit:hover {
   font-size: 14px;
   width: fit-content;
   padding: 0 10px;
-  color: #9398b3;
-  background-color: #fcfcff;
+  color: var(--light-text-color);
+  background-color: var(--background-color);
   margin: 0 auto;
   position: relative;
   z-index: 1;
@@ -198,13 +269,13 @@ form input.submit:hover {
   width: 60px;
   height: 60px;
   border-radius: 10px;
-  background-color: #ffffff;
-  box-shadow: #9398b3 0 10px 20px -10px;
+  background-color: var(--white-color);
+  box-shadow: var(--light-text-color) 0 10px 20px -10px;
   transition: all .3s ease-out;
 }
 
 .options ul li a:hover {
-  color: #ffffff;
+  color: var(--white-color);
   box-shadow: none;
 }
 /*用STEAM PSN XBOX替换原先APPLE GOOGLE FACEBOOK图标*/
@@ -219,3 +290,5 @@ form input.submit:hover {
 .options ul li:nth-child(3) a:hover {
   background-color: #107c10;
 }
+
+</style>

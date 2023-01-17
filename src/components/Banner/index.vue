@@ -1,24 +1,27 @@
 <template>
 
-  <Transition>
-    <n-carousel
-        autoplay
-        draggable
-        keyboard
-        class="banner"
-        effect="card"
-        :style="{ height: bannerHeight + 'px' }"
-    >
-      <n-carousel-item
-          class="item"
-          style="width:48%"
-          v-for="item in bannerData"
-          :key="item"
+
+    <Transition>
+      <n-carousel
+          autoplay
+          draggable
+          keyboard
+          class="banner"
+          effect="card"
+          :style="{ height: bannerHeight + 'px' }"
       >
-        <img :src="HttpManager.attachImageUrl(item.pic)" alt="banner"/>
-      </n-carousel-item>
-    </n-carousel>
-  </Transition>
+        <n-carousel-item
+            class="item"
+            style="width:48%"
+            v-for="item in bannerData"
+            :key="item"
+        >
+          <img :src="HttpManager.attachImageUrl(item.pic)" alt="banner"/>
+        </n-carousel-item>
+      </n-carousel>
+    </Transition>
+
+
 
 <!--  <n-carousel v-if="swiperList.length"  type="card" height="20vw" :interval="4000" class="banner">-->
 <!--    <n-carousel-item class="item"  v-for="(item, index) in swiperList" :key="index">-->
@@ -91,6 +94,8 @@ onBeforeUnmount(() => {
 </script>
 
 <style lang="scss" scoped>
+
+
 .banner {
   // max-width: 1200px;
   // margin: 0 auto;
@@ -121,5 +126,9 @@ onBeforeUnmount(() => {
   transform: translateX(-50%);
   bottom: 12px;
   left: 50%;
+}
+
+body{
+  display: block;
 }
 </style>

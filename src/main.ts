@@ -12,7 +12,6 @@ import 'vfonts/Lato.css'
 import 'vfonts/FiraCode.css'
 import "element-plus/dist/index.css";
 import "./assets/css/index.scss";
-
 import "./assets/icons/index.js";
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
@@ -40,5 +39,5 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 
 app.use(router)
 app.use(store)
-// app.use(ElementPlus);
+app.use(ElementPlus);
 app.mount('#app')

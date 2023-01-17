@@ -1,14 +1,21 @@
 <template>
-   <div class="banner">
-     <Banner/>
-   </div>
+
+  <div class="body-tg">
+  <div class="banner">
+<!--    <Banner/>-->
+  </div>
 
 
-  <play-list class="play-list-container" title="推荐歌单" path="song-sheet-detail" :playList="songList"></play-list>
+    <play-list class="play-list-container" title="推荐歌单" path="song-sheet-detail" :playList="songList"></play-list>
 
-  <SingerList class="play-list-container" title="推荐艺人" path="singer-detail" :playList="singerList"></SingerList>
+    <SingerList class="play-list-container" title="推荐艺人" path="singer-detail" :playList="singerList"></SingerList>
 
-  <play-list class="play-list-container" title="新专速递" path="singer-detail" :playList="singerList"></play-list>
+    <play-list class="play-list-container" title="新专速递" path="singer-detail" :playList="singerList"></play-list>
+  </div>
+
+
+
+
 
 </template>
 
@@ -131,6 +138,11 @@ footer {
 
   margin-top: 30px;
   margin-bottom: 10px;
+}
+
+.body-tg{
+  font-size: 16px;
+  line-height: 0;
 }
 
 </style>

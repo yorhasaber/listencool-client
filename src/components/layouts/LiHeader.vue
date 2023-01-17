@@ -41,6 +41,7 @@
     <li-header-nav class="navigation-links" v-if="!token" :styleList="signList" :activeName="activeNavName" @click="goPage"></li-header-nav>
 
     <el-dropdown class="user-wrap" v-if="token" trigger="click">
+
       <el-image class="user" fit="contain" :src="attachImageUrl(userPic)"/>
       <template #dropdown>
         <el-dropdown-menu>
@@ -231,10 +232,11 @@ export default defineComponent({
   align-items: center;
 
   .user {
-    //width: $header-user-width;
+    margin-left: 50px;
+    margin-right: 70px;
+    width: 40px;
     //height: $header-user-width;
     border-radius: $header-user-radius;
-    margin-right: $header-user-margin;
     cursor: pointer;
   }
 }
@@ -306,7 +308,7 @@ export default defineComponent({
 nav {
   position: fixed;
   top: 0;
-  right: 20px;
+  right: 0px;
   left: 0;
   display: flex;
   justify-content: space-between;
@@ -492,4 +494,13 @@ nav.has-custom-titlebar {
 .input {
   transition: all 0.5s;
 }
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+
 </style>
