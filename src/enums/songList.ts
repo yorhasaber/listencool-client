@@ -31,4 +31,13 @@ export const SONGSTYLE = [
     name: "乐器",
     type: "Eight",
   },
+  {
+    name: "动漫",
+    type: "Eight",
+  },
+  {
+    name: "游戏",
+    type: "Eight",
+  },
+
 ];

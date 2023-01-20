@@ -4,11 +4,21 @@
       <li-icon :icon="iconList.ZHEDIE" @click="toggle = !toggle"></li-icon>
     </div>
     <!--播放进度-->
-    <el-slider class="progress" v-model="nowTime" @change="changeTime" size="small"></el-slider>
+    <!--    <el-slider class="progress" v-model="nowTime" @change="changeTime" size="small"></el-slider>-->
+    <n-slider class="progress" :step="0.01" v-model:value="nowTime" @update:value="changeTime" @change="changeTime"
+              size="small"></n-slider>
     <div class="control-box">
       <div class="info-box">
         <!--歌曲图片-->
-        <el-image class="song-bar-img" fit="contain" :src="attachImageUrl(songPic)" @click="goPlayerPage"/>
+        <div class="pic" @click.stop="bigPlate">
+          <img
+              :src="attachImageUrl(songPic)"
+              alt="pic"
+          />
+          <n-icon class="open" size="30" :component="KeyboardArrowUpFilled"/>
+        </div>
+        <!--歌曲图片-->
+        <!--        <el-image class="song-bar-img" fit="contain" :src="attachImageUrl(songPic)" @click="goPlayerPage"/>-->
         <!--播放开始结束时间-->
         <div v-if="songId">
           <div class="song-info">{{ this.songTitle }} - {{ this.singerName }}</div>
@@ -18,24 +28,12 @@
       <div class="song-ctr">
         <li-icon class="li-play-show" :icon="playStateList[playStateIndex]" @click="changePlayState"></li-icon>
         <!--上一首-->
-        <li-icon class="li-play-show" :icon="iconList.SHANGYISHOU" @click="prev"></li-icon>
+        <n-icon title="上一曲" class="pointer" size="30" :component="SkipPreviousRound" @click="prev"/>
+
         <!--播放-->
         <li-icon :icon="playBtnIcon" @click="togglePlay"></li-icon>
-        <!--下一首-->
-        <li-icon class="li-play-show" :icon="iconList.XIAYISHOU" @click="next"></li-icon>
-        <!--音量-->
-        <el-dropdown class="li-play-show" trigger="click">
-          <li-icon v-if="volume !== 0" :icon="iconList.YINLIANG"></li-icon>
-          <li-icon v-else :icon="iconList.JINGYIN"></li-icon>
-          <template #dropdown>
-            <el-dropdown-menu>
-              <el-slider class="li-slider" style="height: 150px; margin: 10px 0" v-model="volume"
-                         :vertical="true"></el-slider>
-            </el-dropdown-menu>
-          </template>
-        </el-dropdown>
-      </div>
-      <div class="song-ctr song-edit">
+
+        <n-icon title="下一曲" class="pointer" size="30" :component="SkipNextRound" @click="next"/>
         <!--收藏-->
         <li-icon
             class="li-play-show"
@@ -43,7 +41,10 @@
             :icon="isCollection ? iconList.like : iconList.dislike"
             @click="changeCollection"
         ></li-icon>
+      </div>
+      <div class="song-ctr song-edit">
         <!--下载-->
+
         <li-icon
             class="li-play-show"
             :icon="iconList.download"
@@ -54,8 +55,21 @@
             })
           "
         ></li-icon>
+
+
         <!--歌曲列表-->
         <li-icon :icon="iconList.LIEBIAO" @click="changeAside"></li-icon>
+
+        <!--<li-icon :icon="iconList.LIEBIAO" @click="bigPlate"></li-icon>-->
+
+        <!--音量-->
+        <li-icon v-if="volume !== 0" :icon="iconList.YINLIANG"></li-icon>
+
+        <li-icon v-else :icon="iconList.JINGYIN"></li-icon>
+
+
+        <n-slider class="li-slider" v-model:value="volume"/>
+
       </div>
     </div>
   </div>
@@ -69,10 +83,44 @@ import LiIcon from "./LiIcon.vue";
 import {HttpManager} from "@/api";
 import {formatSeconds} from "@/utils";
 import {Icon, RouterName} from "@/enums";
+import {
+  KeyboardArrowUpFilled,
+  MusicNoteFilled,
+  PlayCircleFilled,
+  PauseCircleFilled,
+  SkipNextRound,
+  SkipPreviousRound,
+  PlaylistPlayRound,
+  VolumeOffRound,
+  VolumeMuteRound,
+  VolumeDownRound,
+  VolumeUpRound,
+  RepeatRound,
+  RepeatOneRound,
+  ThumbDownRound,
+  FavoriteBorderRound,
+  FavoriteRound,
+} from "@vicons/material";
 
 export default defineComponent({
   components: {
     LiIcon,
+    KeyboardArrowUpFilled,
+    MusicNoteFilled,
+    PlayCircleFilled,
+    PauseCircleFilled,
+    SkipNextRound,
+    SkipPreviousRound,
+    PlaylistPlayRound,
+    VolumeOffRound,
+    VolumeMuteRound,
+    VolumeDownRound,
+    VolumeUpRound,
+    RepeatRound,
+    RepeatOneRound,
+    ThumbDownRound,
+    FavoriteBorderRound,
+    FavoriteRound,
   },
   setup() {
     const {proxy} = getCurrentInstance();
@@ -123,6 +171,10 @@ export default defineComponent({
       if (songIdVO.value) initCollection();
     });
 
+    // const bigPlate = () => {
+    //   this.$store.commit('setshowbigPlayer', false)
+    // }
+
     return {
       isCollection,
       playMusic,
@@ -130,14 +182,30 @@ export default defineComponent({
       checkStatus,
       attachImageUrl: HttpManager.attachImageUrl,
       changeCollection,
-      downloadMusic
+      downloadMusic,
+      KeyboardArrowUpFilled,
+      MusicNoteFilled,
+      PlayCircleFilled,
+      PauseCircleFilled,
+      SkipNextRound,
+      SkipPreviousRound,
+      PlaylistPlayRound,
+      VolumeOffRound,
+      VolumeMuteRound,
+      VolumeDownRound,
+      VolumeUpRound,
+      RepeatRound,
+      RepeatOneRound,
+      ThumbDownRound,
+      FavoriteBorderRound,
+      FavoriteRound,
     };
   },
   data() {
     return {
       startTime: "00:00",
       endTime: "00:00",
-      nowTime: 0, // 进度条的位置
+      nowTimenowTime: 0, // 进度条的位置
       toggle: true,
       volume: 50,
       playState: Icon.XUNHUAN,
@@ -171,6 +239,7 @@ export default defineComponent({
       "currentPlayList",
       "currentPlayIndex", // 当前歌曲在歌曲列表的位置
       "showAside", // 是否显示侧边栏
+      "showbigPlayer", //是否显示大播放页面
       "autoNext", // 用于触发自动播放下一首
     ]),
   },
@@ -197,6 +266,9 @@ export default defineComponent({
   methods: {
     changeAside() {
       this.$store.commit("setShowAside", !this.showAside);
+    },
+    bigPlate() {
+      this.$store.commit("setshowbigPlayer", "ture");
     },
     // 控制音乐播放 / 暂停
     togglePlay() {
@@ -267,4 +339,55 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 @import "@/assets/css/li-play-bar.scss";
+
+
+.pointer {
+  cursor: pointer
+}
+
+.pic {
+  width: 50px;
+  height: 50px;
+  min-width: 50px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-right: 12px;
+  position: relative;
+  box-shadow: 0 6px 8px -2px rgb(0 0 0 / 16%);
+  cursor: pointer;
+
+  img {
+    width: 100%;
+    height: 100%;
+    transform: scale(1);
+    filter: blur(0) brightness(1);
+    transition: all 0.3s;
+  }
+
+  .open {
+    position: absolute;
+    top: calc(50% - 15px);
+    left: calc(50% - 15px);
+    width: 30px;
+    height: 30px;
+    color: #fff;
+    opacity: 0;
+    transform: scale(0.6);
+    transition: all 0.3s;
+  }
+
+  &:hover {
+    img {
+      transform: scale(1.1);
+      filter: blur(6px) brightness(0.8);
+    }
+
+    .open {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
+
+
 </style>

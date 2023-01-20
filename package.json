@@ -1,8 +1,9 @@
 {
   "name": "listencool-client",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.5",
   "type": "module",
+  "author": "lidongwei",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",

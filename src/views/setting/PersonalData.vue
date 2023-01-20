@@ -126,7 +126,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.btn ::v-deep .el-form-item__content {
+.btn ::v-deep(.el-form-item__content) {
   display: flex;
   justify-content: center;
 }

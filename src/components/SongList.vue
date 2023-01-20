@@ -139,6 +139,7 @@ export default defineComponent({
     const songPic = computed(() => store.getters.songPic);
     const createTime = computed(() => store.getters.createTime);
 
+    //拼接输出歌单list
     const dataList = computed(() => {
       const list = [];
       songList.value.forEach((item: any, index) => {
@@ -161,6 +162,7 @@ export default defineComponent({
         name: row.name,
         lyric: row.lyric,
         currentSongList: songList.value,
+
       });
     }
 
@@ -175,6 +177,7 @@ export default defineComponent({
        name: item.name,
        lyric: item.lyric,
        currentSongList: songList.value,
+
      });
       console.log(item);
 

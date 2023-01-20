@@ -9,7 +9,7 @@ export const enum Icon {
   ZHEDIE = "#icon-jiantou-xia-cuxiantiao", // 折叠
   SHANGYISHOU = "#icon-ziyuanldpi", // 上一首
   XIAYISHOU = "#icon-ziyuanldpi1", // 下一首
-  JINGYIN = "#icon-liliangjingliheix", // 静音
+  JINGYIN = "#icon-yinliangjingyinheix", // 静音
   LIEBIAO = "#icon-liebiao", // 列表
   Dislike = "#icon-xihuan1", // 未收藏
   Like = "#icon-xihuan", // 收藏

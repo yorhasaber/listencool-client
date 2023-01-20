@@ -9,10 +9,17 @@
       <span>{{ musicName }}</span>
     </div>
     <div class="navigation-buttons">
-      <Button-Icon @click.native="go('back')"><el-icon :size="20"><ArrowLeftBold/></el-icon></Button-Icon>
-      <button-icon @click.native="go('forward')"><el-icon :size="20"><ArrowRightBold /></el-icon></button-icon>
+      <Button-Icon @click.native="go('back')">
+        <el-icon :size="20">
+          <ArrowLeftBold/>
+        </el-icon>
+      </Button-Icon>
+      <button-icon @click.native="go('forward')">
+        <el-icon :size="20">
+          <ArrowRightBold/>
+        </el-icon>
+      </button-icon>
     </div>
-
 
 
     <div class="navigation-links">
@@ -27,7 +34,7 @@
     <div class="right-part">
       <div class="search-box">
         <div class="container" :class="{ active: inputFocus }">
-          <Search style="width: 1em; height: 1em; margin-right: 8px" />
+          <Search style="width: 1em; height: 1em; margin-right: 8px"/>
           <div class="input">
             <input placeholder="搜索" :prefix-icon="Search" v-model="keywords" @keyup.enter="goSearch()"/>
           </div>
@@ -38,7 +45,8 @@
     <!--      <el-input placeholder="搜索" :prefix-icon="Search" v-model="keywords" @keyup.enter="goSearch()" />-->
     <!--    </div>-->
     <!--设置-->
-    <li-header-nav class="navigation-links" v-if="!token" :styleList="signList" :activeName="activeNavName" @click="goPage"></li-header-nav>
+    <li-header-nav class="navigation-links" v-if="!token" :styleList="signList" :activeName="activeNavName"
+                   @click="goPage"></li-header-nav>
 
     <el-dropdown class="user-wrap" v-if="token" trigger="click">
 
@@ -214,15 +222,15 @@ export default defineComponent({
   margin: 0 20px;
   width: 100%;
 
-  &::v-deep input {
-    text-indent: 5px;
-    max-width: $header-search-max-width;
-    min-width: $header-search-min-width;
-    border-radius: $header-search-radius;
-    box-shadow: none;
-    background-color: $color-light-grey;
-    color: $color-black;
-  }
+  //&::v-deep input {
+  //  text-indent: 5px;
+  //  max-width: $header-search-max-width;
+  //  min-width: $header-search-min-width;
+  //  border-radius: $header-search-radius;
+  //  box-shadow: none;
+  //  background-color: $color-light-grey;
+  //  color: $color-black;
+  //}
 }
 
 /*用户*/
@@ -249,6 +257,7 @@ export default defineComponent({
     right: 0vw;
     left: 1vw;
   }
+
   .svg-icon {
     height: 24px;
     width: 24px;
