@@ -76,34 +76,48 @@ export default defineComponent({
   .play-body {
     @include layout(flex-start, stretch, row, wrap);
   }
+
 }
 
 .card-frame {
   .card {
-    //position: relative;
-    //height: 0;
-    //padding-bottom: 100%;
-    //overflow: hidden;
-    //border-radius: 50%;
-    //margin: 0 auto;
-
     position: relative;
-    width: 200px;
-    height: 200px;
+    width: 12vw;
+    height: 12vw;
     overflow: hidden;
-    border-radius: 50%;  /* Change to 50% for a circular shape */
+    border-radius: 50%;
     margin: 0 auto;
+  }
 
-    //position: relative;
-    //height: 0;
-    //padding-bottom: 80%; /* Change the padding-bottom to 50% */
-    //overflow: hidden;
-    //border-radius: 50%;  /* Change to 50% for a circular shape */
+  .card-img {
+    width: 100%;
+    transition: all 0.4s ease;
+  }
 
-    .card-img {
+  @media (max-width: 768px) {
+    .card {
+      width: 150px;
+      height: 150px;
+    }
+  }
+  @media (max-width: 768px) {
+    .card {
+      width: 150px;
+      height: 150px;
+    }
+  }
 
-      width: 100%;
-      transition: all 0.4s ease;
+  @media (max-width: 640px) {
+    .card {
+      width: 120px;
+      height: 120px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .card {
+      width: 100px;
+      height: 100px;
     }
   }
 

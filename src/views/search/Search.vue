@@ -31,6 +31,10 @@ export default defineComponent({
           name: "歌单",
           value: "SearchSongList",
         },
+        {
+          name:"歌手",
+          value:"SearchSongList",
+        },
       ],
       activeName: "歌曲",
       currentView: "SearchSong",

@@ -1,30 +1,62 @@
 <template>
-  <div class="song-container">
-    <el-image class="song-pic" fit="contain" :src="attachImageUrl(songPic)" />
-    <ul class="song-info">
-      <li>歌手：{{ singerName }}</li>
-      <li>歌曲：{{ songTitle }}</li>
-    </ul>
-  </div>
-  <div class="container">
-    <div class="lyric-container">
-      <div class="song-lyric">
-        <transition-group name="lyric-fade">
-          <!--有歌词-->
-          <ul :style="{ top: lrcTop }" class="has-lyric" v-if="lyricArr.length" key="has-lyric">
-            <li v-for="(item, index) in lyricArr" :key="index">
-              {{ item[1] }}
-            </li>
-          </ul>
-          <!--没歌词-->
-          <div v-else class="no-lyric" key="no-lyric">
-            <span>暂无歌词</span>
+
+<!--  <div class="song-container">-->
+<!--    <el-image class="song-pic" fit="contain" :src="attachImageUrl(songPic)" />-->
+<!--    <ul class="song-info">-->
+<!--      <li>歌手：{{ singerName }}</li>-->
+<!--      <li>歌曲：{{ songTitle }}</li>-->
+<!--    </ul>-->
+<!--  </div>-->
+<!--  <div class="container">-->
+<!--    <div class="lyric-container">-->
+<!--      <comment :playId="songId" :type="0"></comment>-->
+<!--    </div>-->
+<!--  </div>-->
+<main>
+  <div class="comment">
+    <div class="title" >
+      <span class="key">全部评论</span>
+      <n-card class="song">
+
+        <div class="smallSongData">
+          <n-avatar
+              class="pic"
+              :size="59"
+              :src="attachImageUrl(songPic)"
+              fallback-src="/images/pic/default.png"/>
+
+          <div class="text">
+            <n-text class="text-hidden"
+                    depth="2">{{ songTitle }}</n-text>
           </div>
-        </transition-group>
+
+          <div class="name">
+            <n-text class="text-hidden"
+                    depth="2">{{ singerName }}</n-text>
+          </div>
+
+          </div>
+
+<!--        <el-image class="song-pic" fit="contain" :src="attachImageUrl(songPic)" />-->
+<!--        <ul class="song-info">-->
+<!--          <li>歌手：{{ singerName }}</li>-->
+<!--          <li>歌曲：{{ songTitle }}</li>-->
+<!--        </ul>-->
+      </n-card>
+    </div>
+    <div class="commentData" >
+      <div class="hotComments" >
+        <n-h6 prefix="bar"> 热门评论 </n-h6>
+        <div class="content">
+          <comment :playId="songId" :type="0"></comment>
+        </div>
       </div>
-      <comment :playId="songId" :type="0"></comment>
     </div>
   </div>
+</main>
+
+
+
 </template>
 
 <script lang="ts">
@@ -90,6 +122,50 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 @import "@/assets/css/var.scss";
+
+//.smallSongData{
+//
+//  flex-direction: row;
+//  align-items: center;
+//}
+
+.smallSongData {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.pic {
+  width: 80px;
+  height: 80px;
+  margin-right: 20px;
+}
+
+.text {
+  font-weight: bold;
+  font-size: 30px;
+  text-align: center;
+}
+
+.name {
+  font-weight: bold;
+  color: black;
+  text-align: center;
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .smallSongData {
+    flex-wrap: wrap;
+  }
+  .name, .text {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+
 
 .song-container {
   position: fixed;
@@ -176,4 +252,61 @@ export default defineComponent({
     display: none;
   }
 }
+
+.comment {
+  .goback {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+    z-index: 2;
+    :hover {
+      background-color: var(--n-border-color);
+    }
+    :deep(.n-card__content) {
+      transition: all 0.3s;
+      font-size: 12px;
+    }
+  }
+  .title {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    .key {
+      font-size: 40px;
+      font-weight: bold;
+      margin-right: 8px;
+    }
+    .song {
+      margin-top: 20px;
+      border-radius: 8px;
+    }
+  }
+  .hotComments,
+  .allComments {
+    margin-top: 40px;
+    .count {
+      font-size: 13px;
+      margin-left: 4px;
+      opacity: 0.6;
+    }
+  }
+}
+
+main {
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  overflow: auto;
+  //padding: 24px 10vw 96px 10vw;
+  padding: 24px 10vw 54px;
+  //padding:2px 5vw 54px;
+  box-sizing: border-box;
+  scrollbar-width: none; // firefox
+}
+
+
+
+
 </style>

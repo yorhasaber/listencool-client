@@ -1,20 +1,24 @@
 <template>
-  <div class="personal">
-    <div class="personal-info">
-      <el-image class="personal-img" fit="contain" :src="attachImageUrl(userPic)" @click="dialogTableVisible = true" />
-      <div class="personal-msg">
-        <div class="username">{{ personalInfo.username }}</div>
-        <div class="introduction">{{ personalInfo.introduction }}</div>
+  <main>
+    <div class="personal">
+      <div class="personal-info">
+        <el-image class="personal-img" fit="contain" :src="attachImageUrl(userPic)" @click="dialogTableVisible = true" />
+        <div class="personal-msg">
+          <div class="username">{{ personalInfo.username }}</div>
+          <div class="introduction">{{ personalInfo.introduction }}</div>
+        </div>
+        <el-button class="edit-info" round :icon="Edit" @click="goPage()">修改个人信息</el-button>
       </div>
-      <el-button class="edit-info" round :icon="Edit" @click="goPage()">修改个人信息</el-button>
+      <h3 class="h1">我的收藏</h3>
+      <div class="personal-body">
+        <song-list :songList="collectSongList" :show="true" @changeData="changeData"></song-list>
+      </div>
+      <el-dialog v-model="dialogTableVisible" title="修改头像">
+        <upload></upload>
+      </el-dialog>
     </div>
-    <div class="personal-body">
-      <song-list :songList="collectSongList" :show="true" @changeData="changeData"></song-list>
-    </div>
-    <el-dialog v-model="dialogTableVisible" title="修改头像">
-      <upload></upload>
-    </el-dialog>
-  </div>
+  </main>
+
 </template>
 
 <script lang="ts">
@@ -99,65 +103,121 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/css/var.scss";
+//@import "@/assets/css/var.scss";
+
+$primary-color: #007AFF; // Change to your desired primary color
+$secondary-color: #FFFFFF; // Change to your desired secondary color
+$frosted-color: mix(#0000FF, #FF0000);
+
+
+
+
+body {
+  background: linear-gradient(to bottom, $primary-color, $secondary-color);
+
+}
 
 .personal {
-  padding-top: $header-height + 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-  &::before {
-    content: "";
-    background-color: $color-blue-shallow;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: $header-height + 150px;
-  }
-}
 
-.personal-info {
-  position: relative;
-  margin-bottom: 60px;
-  .personal-img {
-    height: 200px;
-    width: 200px;
-    border-radius: 50%;
-    border: 5px solid $color-white;
-    position: absolute;
-    top: -180px;
-    left: 50px;
-    cursor: pointer;
-  }
-  .personal-msg {
-    margin-left: 300px;
-    position: absolute;
-    top: -120px;
+  .personal-info {
+    display: flex;
+    align-items: center;
+    margin: 30px 0;
 
-    .username {
-      font-size: 50px;
-      font-weight: 600;
+    .personal-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     }
 
-    .introduction {
-      font-size: 20px;
-      font-weight: 500;
+    .personal-msg {
+      margin-left: 20px;
+
+      .username {
+        font-size: 20px;
+        font-weight: bold;
+        color: $primary-color;
+      }
+
+      .introduction {
+        margin-top: 10px;
+        font-size: 14px;
+        color: gray;
+      }
+    }
+
+    .edit-info {
+      margin-left: auto;
+      background-color: $primary-color;
+      color: $secondary-color;
     }
   }
-  .edit-info {
-    position: absolute;
-    right: 10vw;
-    margin-top: -120px;
-  }
-}
-
-@media screen and (min-width: $sm) {
   .personal-body {
-    padding: 0px 100px;
+    width: 100%;
+    margin-top: 20px;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+  }
+  }
+.el-dialog {
+  width: 400px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+@media (max-width: 768px) {
+  .personal {
+    .personal-info {
+      flex-wrap: wrap;
+      align-items: flex-start;
+
+      Copy code
+      .personal-img {
+        width: 80px;
+        height: 80px;
+        margin-right: 10px;
+      }
+
+      .personal-msg {
+        width: 100%;
+        text-align: center;
+        margin: 10px 0;
+      }
+
+      .edit-info {
+        margin-top: 10px;
+        width: 100%;
+        text-align: center;
+      }
+    }
   }
 }
 
-@media screen and (max-width: $sm) {
-  .edit-info {
-    display: none;
-  }
+main {
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  overflow: auto;
+  //padding: 24px 10vw 96px 10vw;
+  padding: 24px 10vw 54px;
+  //padding:2px 5vw 54px;
+  box-sizing: border-box;
+  scrollbar-width: none; // firefox
+
 }
+
+.h1{
+  color: var(--color-text);
+  font-size: 30px;
+  margin-left: 25px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+
 </style>

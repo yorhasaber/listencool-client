@@ -6,7 +6,7 @@
     <!--图标-->
     <div class="header-logo" @click="goPage()">
       <li-icon :icon="iconList.ERJI"></li-icon>
-      <span>{{ musicName }}</span>
+      <span class="logo" >Listen Cool</span>
     </div>
     <div class="navigation-buttons">
       <Button-Icon @click.native="go('back')">
@@ -181,6 +181,24 @@ export default defineComponent({
 //  }
 //}
 
+.logo{
+  span {
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    @media (max-width: 600px) {
+      font-size: 24px;
+    }
+    @media (max-width: 400px) {
+      font-size: 18px;
+      text-align: center;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+}
+
 .li-header {
   position: fixed;
   width: 100%;
@@ -210,7 +228,18 @@ export default defineComponent({
 
   span {
     margin-left: 1rem;
+    font-size: 23px;
+    font-weight: bold;
+    text-align: center;
+    @media (max-width: 900px) {
+      font-size: 19px;
+    }
+    @media (max-width: 890px) {
+      display: none;
+    }
+
   }
+
 }
 
 .li-header-nav {
