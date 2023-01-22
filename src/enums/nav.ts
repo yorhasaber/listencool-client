@@ -5,10 +5,11 @@ export const enum NavName {
   SongSheet = "歌单",
   Singer = "歌手",
   Personal = "个人主页",
-  Setting = "设置",
+  Setting = "用户信息设置",
   SignIn = "登录",
   SignUp = "注册",
   SignOut = "退出",
+  AllSetter ="全局设置",
 }
 
 // 左侧导航栏
@@ -48,6 +49,10 @@ export const MENULIST = [
   {
     name: NavName.Setting,
     path: RouterName.Setting,
+  },
+  {
+    name: NavName.AllSetter,
+    path: RouterName.AllSetteing,
   },
   {
     name: NavName.SignOut,

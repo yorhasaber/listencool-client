@@ -14,6 +14,8 @@ import setting from '@/views/setting/Setting.vue'
 import personalData from '@/views/setting/PersonalData.vue'
 import personal from '@/views/personal/Personal.vue'
 import erro404 from '@/views/error/404.vue'
+import allsetting from '@/views/setting/SettingView.vue'
+
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -86,6 +88,14 @@ const routes: Array<RouteRecordRaw> = [
                     requireAuth: true,
                 },
                 component: personal,
+            },
+            {
+                path: "/all-setting",
+                name: "all-setting",
+                meta: {
+                    requireAuth: true,
+                },
+                component: allsetting,
             },
             {
                 path: "/setting",

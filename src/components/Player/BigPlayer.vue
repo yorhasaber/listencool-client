@@ -11,9 +11,9 @@
       />
       <div class="all">
         <div class="left">
-          <PlayerCover/>
+          <PlayerCover v-if="setting.playerStyle === 'cover'"/>
+          <PlayerRecord v-else/>
         </div>
-
         <div
             class="right"
             @mouseenter="menuShow = true"
@@ -21,24 +21,22 @@
         >
           <transition name="lrc">
             <div class="lrcShow">
-              <!--            <div class="data">-->
+              <div class="data" v-show="setting.playerStyle === 'record'">
 
-              <!--                            <div class="name text-hidden">-->
-              <!--                              <span>{{ "暂无歌曲" }}</span>-->
-              <!--                              <span>{{ 6666666666 }}</span>-->
-              <!--                            </div>-->
+                <div class="name text-hidden">
+                  <span>{{ store.getters.songTitle }}</span>
 
-              <!--              <div class="artists text-hidden">-->
-              <!--                  <span class="artist">-->
-              <!--                    <span> 艺术家名字 </span>-->
-              <!--                  </span>-->
+                </div>
 
-              <!--               </div>-->
-              <!--            </div>-->
+                <div class="artists text-hidden">
+                    <span class="artist">
+                      <span> {{store.getters.singerName}} </span>
+                    </span>
+                 </div>
+              </div>
 
-              <div class="lrc-all cover" style="">
-
-
+              <div :class="setting.playerStyle === 'cover'? 'lrc-all cover': 'lrc-all record'"
+                   :style="setting.lyricsPosition === 'center'? 'text-align: center': null">
                 <div class="placeholder"></div>
 
                 <!--                <div :class="lrcOnPlayIndex == index ? 'lrc on' : 'lrc'"-->
@@ -56,7 +54,7 @@
                 <!--                >-->
                 <!--                  <span class="lyric"> {{item[1]}} </span>-->
                 <!--                </div>-->
-                <div :class="lrcOnPlayIndex == index ? 'lrc on' : 'lrc'"
+                <div :class="lrcOnPlayIndex === index ? 'lrc on' : 'lrc'"
                      v-for="(item, index) in lyricArr"
                      :key="item"
                      :id="'lrc' + index"
@@ -65,45 +63,25 @@
                   <span class="lyric"> {{item.lyric}} </span>
                 </div>
 
-                <!--              <div :class="lrcOnPlayIndex == index ? 'lrc on' : 'lrc'"-->
-                <!--                   v-for="(item, index) in store.getters.lyric"-->
-                <!--                   :key="item"-->
-                <!--                   :id="'lrc' + index"-->
-                <!--                >-->
-                <!--                <span class="lyric"> 66666666 </span>-->
-                <!--              </div>-->
-
-                <!--                <div class="lrc" id="lrc0" data-v-9fe64927="">-->
-                <!--                  <span class="lyric" data-v-9fe64927=""> 作词 : 郑国江</span>-->
-                <!--                </div>-->
-
-                <!--                <div class="lrc" id="lrc1" data-v-9fe64927=""><span class="lyric" data-v-9fe64927=""> 作曲 : 齐秦</span>-->
-                <!--                </div>-->
-
-                <!--                <div class="lrc 0" id="lrc1" data-v-9fe64927=""><span class="lyric"-->
-                <!--                                                                      data-v-9fe64927=""> 作曲 : 齐秦</span>-->
-                <!--                </div>-->
-
-                <!--                <div class="lrc on" id="lrc7" data-v-9fe64927=""><span class="lyric"-->
-                <!--                                                                       data-v-9fe64927="">说再见 回头梦已远</span>-->
-                <!--                </div>-->
-
-                <!--                <div class="lrc" id="lrc1" data-v-9fe64927=""><span class="lyric" data-v-9fe64927=""> 作曲 : 齐秦</span>-->
-                <!--                </div>-->
-
-                <!--                <div class="lrc" id="lrc1" data-v-9fe64927=""><span class="lyric" data-v-9fe64927=""> 作曲 : 齐秦</span>-->
-                <!--                </div>-->
-
                 <div class="placeholder"></div>
+
               </div>
-            </div>
+
+                <div
+                    :class="menuShow ? 'menu show' : 'menu'"
+                    v-show="setting.playerStyle === 'record'"
+                 >
+                  <n-icon
+                      class="open"
+                      :component="MessageFilled"
+                      @click="routerJump( `${store.getters.songId}`)"
+                  />
+                </div>
+              </div>
           </transition>
         </div>
-
-
       </div>
-
-
+<!--<canvas v-if="setting.musicFrequency" class="avBars" ref="avBars"/>-->
     </div>
 
 
@@ -116,16 +94,42 @@ import {
   GTranslateFilled,
   MessageFilled,
 } from "@vicons/material";
-import {defineComponent, computed, onMounted, ref, onBeforeUnmount, watch} from "vue";
+import {
+  defineComponent,
+  computed,
+  onMounted,
+  ref,
+  onBeforeUnmount,
+  watch,
+  nextTick,
+  onUpdated,
+  onBeforeMount, onUnmounted
+} from "vue";
+import { settingStore} from "@/stores/index";
+
 import {useStore} from "vuex";
 import mixin from "@/mixins/mixin";
 import PlayerCover from "@/components/Player/PlayerCover.vue";
 import {HttpManager} from "@/api";
 import { parseLyric } from "@/utils";
 
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 const store = useStore();
 
+const setting = settingStore();
+
+
+
 const {getSongTitle, playMusic} = mixin();
+
+// 工具栏显隐
+let menuShow = ref(false);
+
+// 音乐频谱
+let avBars = ref(null);
+let musicFrequency = ref(null);
 
 const showbigPlayer = computed(() => store.getters.showbigPlayer); // 是否显示侧边栏
 const lrcTop = ref("80px"); // 歌词滑动
@@ -191,12 +195,42 @@ const jumpTime = (time) => {
 
 onBeforeUnmount(() => {
   clearInterval(lrcInterval.value);
-  lyricsScroll();
+  console.log("DOM即将挂载");
 });
 
-onMounted(()=>{
-  // lyricsScroll();
-})
+// onMounted(() => {
+//   console.log("DOM挂载完毕");
+// })
+//
+// onUpdated (()=>{
+//   console.log("DOM更新完毕");
+// })
+//
+// onBeforeMount(() => {
+//   console.log("DOM即将挂载");
+// })
+//
+// onUnmounted(() => {
+//   console.log("销毁完毕");
+// })
+
+// onMounted(() => {
+//   nextTick(() => {
+//     if (setting.musicFrequency) {
+//       $player.crossOrigin = "anonymous";
+//       musicFrequency.value = new MusicFrequency(
+//           avBars.value,
+//           $player,
+//           null,
+//           50,
+//           null,
+//           null,
+//           5
+//       );
+//       musicFrequency.value.drawSpectrum();
+//     }
+//   });
+// });
 
 // 监听页面是否打开
 watch(
@@ -210,6 +244,26 @@ watch(
       }
     }
 );
+
+
+//监听歌曲是否放完，放完更新歌词
+watch(
+    () => store.getters.songId,
+    (val) => {
+      if (val) {
+        lyricsScroll();
+      } else {
+        clearInterval(lrcInterval.value);
+      }
+    }
+);
+
+const routerJump = (url) => {
+  console.log(url)
+  store.commit("setshowbigPlayer", false)
+  router.push(`/lyric/${url}`);
+};
+
 </script>
 
 <style lang="scss" scoped>

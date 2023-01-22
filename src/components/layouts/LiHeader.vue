@@ -50,6 +50,7 @@
 
     <el-dropdown class="user-wrap" v-if="token" trigger="click">
 
+     <!--头像及设置-->
       <el-image class="user" fit="contain" :src="attachImageUrl(userPic)"/>
       <template #dropdown>
         <el-dropdown-menu>
