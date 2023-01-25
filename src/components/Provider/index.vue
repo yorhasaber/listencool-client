@@ -1,0 +1,112 @@
+<template>
+  <!-- 全局配置组件 -->
+  <n-config-provider
+    :locale="zhCN"
+    :date-locale="dateZhCN"
+    :theme="theme"
+    :theme-overrides="themeOverrides"
+    :breakpoints="{
+      xs: 0,
+      mb: 480,
+      s: 640,
+      m: 1024,
+      l: 1280,
+      xl: 1536,
+      xxl: 1920,
+    }"
+    abstract
+    inline-theme-disabled
+  >
+    <n-loading-bar-provider>
+      <n-dialog-provider>
+        <n-notification-provider>
+          <n-message-provider>
+            <slot></slot>
+          </n-message-provider>
+        </n-notification-provider>
+      </n-dialog-provider>
+    </n-loading-bar-provider>
+  </n-config-provider>
+</template>
+
+<script setup>
+import {
+  zhCN,
+      dateZhCN,
+      darkTheme,
+      useOsTheme,
+      useLoadingBar,
+      useDialog,
+      useMessage,
+      useNotification,
+} from "naive-ui";
+import { settingStore } from "@/stores/index";
+import {h, onMounted, ref, watch} from "vue";
+
+const setting = settingStore();
+const osThemeRef = useOsTheme();
+
+// 明暗切换
+let theme = ref(null);
+const changeTheme = () => {
+  if (setting.getSiteTheme === "light") {
+    theme.value = null;
+  } else if (setting.getSiteTheme === "dark") {
+    theme.value = darkTheme;
+  }
+};
+
+onMounted(() => {
+  changeTheme();
+});
+
+// 监听明暗变化
+watch(
+  () => setting.getSiteTheme,
+  () => {
+    changeTheme();
+  }
+);
+
+// 监听系统明暗变化
+watch(
+  () => osThemeRef.value,
+  (value) => {
+    value === "dark"
+      ? setting.setSiteTheme("dark")
+      : setting.setSiteTheme("light");
+  }
+);
+
+const themeOverrides = {
+  common: {
+    primaryColor: "rgb(51,93,233)",
+    primaryColorHover: "rgb(51,93,233)",
+    primaryColorSuppl: "rgb(51,93,233)",
+    primaryColorPressed: "rgb(51,93,233)",
+  },
+};
+
+
+
+// 挂载 naive 组件的方法
+// const setupNaiveTools = () => {
+//   window.$loadingBar = useLoadingBar(); // 进度条
+//   window.$notification = useNotification(); // 通知
+//   window.$message = useMessage(); // 信息
+//   window.$dialog = useDialog(); // 对话框
+// };
+//
+// const NaiveProviderContent = defineComponent({
+//   setup() {
+//     setupNaiveTools();
+//   },
+//   render() {
+//     return h("div", {
+//       class: {
+//         tools: true,
+//       },
+//     });
+//   },
+// });
+</script>

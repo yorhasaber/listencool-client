@@ -12,7 +12,7 @@
       </div>
     </el-aside>
     <el-main class="album-main">
-      <h1>{{ songDetails.name }}</h1>
+      <h1 class="h1">{{ songDetails.name }}</h1>
       <p>{{ songDetails.introduction }}</p>
       <song-list :songList="currentSongList"></song-list>
     </el-main>
@@ -68,10 +68,11 @@ export default defineComponent({
   padding-top: 20px;
 
   .singer-img {
-    height: 250px;
-    width: 250px;
-
+    height: 240px;
+    width: 240px;
     border-radius: 50%;
+    box-shadow: 0 0 16px #0003;
+
   }
 
   .album-info {
@@ -89,6 +90,14 @@ export default defineComponent({
   p {
     color: rgba(0, 0, 0, 0.5);
     margin: 10px 0 20px 0px;
+    font-size: 15px;
+  }
+  .h1{
+    color: var(--color-text);
+    font-size: 56px;
+    margin-left: 1px;
+    margin-top: 1px;
+    margin-bottom: 30px;
   }
 }
 

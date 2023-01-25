@@ -6,7 +6,8 @@
         <div class="card" @click="goAblum(item)">
           <el-image class="card-img" fit="contain" :src="attachImageUrl(item.pic)" />
           <div class="mask" @click="goAblum(item)">
-            <li-icon class="mask-icon" :icon="BOFANG"></li-icon>
+<!--            <li-icon class="mask-icon" :icon="BOFANG"></li-icon>-->
+            <n-icon  :component="PersonSearchFilled" />
           </div>
         </div>
         <p class="card-name">{{ item.name || item.title }}</p>
@@ -21,6 +22,7 @@ import { defineComponent, getCurrentInstance, toRefs } from "vue";
 import mixin from "@/mixins/mixin";
 import { Icon } from "@/enums";
 import { HttpManager } from "@/api";
+import { PersonSearchFilled } from "@vicons/material";
 
 export default defineComponent({
   components: {
@@ -46,6 +48,7 @@ export default defineComponent({
       BOFANG: Icon.BOFANG,
       goAblum,
       attachImageUrl: HttpManager.attachImageUrl,
+      PersonSearchFilled
     };
   },
 });
@@ -87,6 +90,7 @@ export default defineComponent({
     overflow: hidden;
     border-radius: 50%;
     margin: 0 auto;
+    box-shadow: 0 0 16px #0003;
   }
 
   .card-img {
@@ -150,8 +154,11 @@ export default defineComponent({
   transition: all 0.3s ease-in-out;
   opacity: 0;
 
-  .mask-icon {
-    @include icon(2em, rgba(240, 240, 240, 1));
+    .n-icon {
+      transform: scale(0.8);
+      color: #fff;
+      font-size: 7vh;
+      transition: all 0.3s;
   }
 
   &:hover {

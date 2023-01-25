@@ -6,6 +6,7 @@
     <!--图标-->
     <div class="header-logo" @click="goPage()">
       <li-icon :icon="iconList.ERJI"></li-icon>
+<!--      <img src="/images/logo/logo-2.png" alt="logo"  class="one_logo"/>-->
       <span class="logo" >Listen Cool</span>
     </div>
     <div class="navigation-buttons">
@@ -182,6 +183,17 @@ export default defineComponent({
 //  }
 //}
 
+.one_logo{
+  width: 30px;
+  height: 30px;
+  margin-right: 12px;
+  cursor: pointer;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
 .logo{
   span {
     font-size: 36px;
@@ -225,6 +237,8 @@ export default defineComponent({
   .icon {
     @include icon(1.9rem, $color-black);
     vertical-align: middle;
+    /* 需要调整*/
+    //margin-left: 70px;
   }
 
   span {
@@ -238,7 +252,20 @@ export default defineComponent({
     @media (max-width: 890px) {
       display: none;
     }
+  }
 
+  .one_logo{
+    width: 1.9rem;
+    vertical-align: middle;
+
+    //width: 30px;
+    margin-right: 12px;
+    cursor: pointer;
+    img {
+      vertical-align: middle;
+      width: 1.9rem;
+      //height: 100%;
+    }
   }
 
 }

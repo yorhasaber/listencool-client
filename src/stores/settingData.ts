@@ -1,6 +1,13 @@
 import {
     defineStore
 } from 'pinia'
+import {
+    WbSunnyFilled,
+    DarkModeFilled
+} from "@vicons/material";
+import {
+    NIcon
+} from "naive-ui";
 
 const useSettingDataStore = defineStore('settingData', {
     state: () => {
@@ -30,6 +37,19 @@ const useSettingDataStore = defineStore('settingData', {
         },
     },
     actions: {
+        // 切换明暗模式
+        setSiteTheme(value) {
+            // this.theme = value;
+            // this.theme == "light" ? $message.info("已切换至浅色模式", {
+            //     icon: () => h(NIcon, null, {
+            //         default: () => h(WbSunnyFilled)
+            //     }),
+            // }) : $message.info("已切换至深色模式", {
+            //     icon: () => h(NIcon, null, {
+            //         default: () => h(DarkModeFilled)
+            //     }),
+            // })
+        },
 
     },
     // 开启数据持久化

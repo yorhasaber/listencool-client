@@ -12,6 +12,7 @@
           <el-image class="card-img" fit="contain" :src="attachImageUrl(item.pic)" />
           <div class="mask" @click="goAblum(item)">
             <li-icon class="mask-icon" :icon="BOFANG"></li-icon>
+<!--            <n-icon class="mask-icon" :component="PlayArrowRound" />-->
           </div>
         </div>
         <p class="card-name">{{ item.name || item.title }}</p>
@@ -22,6 +23,7 @@
 
 <script lang="ts">
 import { defineComponent, getCurrentInstance, toRefs } from "vue";
+import { PlayArrowRound } from "@vicons/material";
 
 import mixin from "@/mixins/mixin";
 import { Icon } from "@/enums";
@@ -51,6 +53,7 @@ export default defineComponent({
       BOFANG: Icon.BOFANG,
       goAblum,
       attachImageUrl: HttpManager.attachImageUrl,
+      PlayArrowRound,
     };
   },
 });
@@ -90,7 +93,6 @@ export default defineComponent({
     padding-bottom: 100%;
     overflow: hidden;
     border-radius: 5px;
-
     .card-img {
       width: 100%;
       transition: all 0.4s ease;
@@ -120,18 +122,32 @@ export default defineComponent({
   height: 100%;
   overflow: hidden;
   border-radius: 5px;
-  background-color: rgba(52, 47, 41, 0.4);
+  background-color: rgba(52, 47, 41, 0.38);
   @include layout(center, center);
   transition: all 0.3s ease-in-out;
   opacity: 0;
 
   .mask-icon {
     @include icon(2em, rgba(240, 240, 240, 1));
+    //backdrop-filter: blur(10px);
+    //opacity: 0;
+    //position: absolute;
+    //font-size: 2.5vh;
+    //color: #fff;
+    //padding: 0.5vw;
+    //background-color: #00000010;
+    //border-radius: 50%;
+    //transform: scale(0.8);
+    //transition: all 0.3s;
   }
 
   &:hover {
     opacity: 1;
     cursor: pointer;
+    .mask-icon {
+      //transform: scale(1);
+      //opacity: 1;
+    }
   }
 }
 

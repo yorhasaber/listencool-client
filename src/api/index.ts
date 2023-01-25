@@ -3,7 +3,8 @@ import { getBaseURL, get, post, deletes } from "./request";
 
 const HttpManager = {
   // 获取图片信息
-  attachImageUrl: (url) => url ? `${getBaseURL()}/${url}` : "https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg",
+  //attachImageUrl: (url) => url ? `${getBaseURL()}/${url}` : "https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg",
+  attachImageUrl: (url) => url ? `${url}` : "https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg",
   // =======================> 用户 API 完成
   // 登录
   signIn: ({username,password}) => post(`user/login/status`, {username,password}),

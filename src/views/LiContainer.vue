@@ -7,8 +7,10 @@
       <main>
         <router-view/>
         <li-current-play></li-current-play>
+<!--        <li-play-list></li-play-list>-->
         <li-play-bar></li-play-bar>
-        <li-scroll-top></li-scroll-top>
+<!--        <li-scroll-top></li-scroll-top>-->
+         <n-back-top :right="50" :bottom="100" style="transition: all 0.3s"/>
         <li-audio></li-audio>
       </main>
       <el-footer>
@@ -28,6 +30,8 @@ import LiScrollTop from "@/components/layouts/LiScrollTop.vue";
 import LiFooter from "@/components/layouts/LiFooter.vue";
 import LiAudio from "@/components/layouts/LiAudio.vue";
 import BigPlayer from "@/components/Player/BigPlayer.vue";
+import LiPlayList from "@/components/layouts/LiPlayList.vue";
+import Provider from "@/components/Provider/index.vue";
 
 const {proxy} = getCurrentInstance();
 
