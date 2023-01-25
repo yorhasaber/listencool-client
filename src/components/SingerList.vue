@@ -77,7 +77,10 @@ export default defineComponent({
   }
 
   .play-body {
-    @include layout(flex-start, stretch, row, wrap);
+    //@include layout(flex-start, stretch, row, wrap);
+    display: flex;
+    flex-wrap: wrap;
+
   }
 
 }
@@ -119,6 +122,13 @@ export default defineComponent({
   }
 
   @media (max-width: 480px) {
+    .card {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  @media (max-width: 800px) {
     .card {
       width: 100px;
       height: 100px;

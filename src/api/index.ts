@@ -18,11 +18,13 @@ const HttpManager = {
   // 返回指定ID的用户
   getUserOfId: (id) => get(`user/detail?id=${id}`),
   // 更新用户头像
-  uploadUrl: (userId) => `${getBaseURL()}/user/avatar/update?id=${userId}`,
-
+  uploadUrl: (userId) => `${getBaseURL()}user/avatar/update?id=${userId}`,
+  //uploadUrl: (userId) => `http://localhost:9090//user/avatar/update?id=${userId}`,
   // =======================> 歌单 API 完成
   // 获取全部歌单
   getSongList: () => get("songList"),
+  //获取推荐歌单
+  getRecommendList: () => get("songList/randomSong"),
   // 获取歌单类型
   getSongListOfStyle: (style) => get(`songList/style/detail?style=${style}`),
   // 返回标题包含文字的歌单
@@ -33,6 +35,10 @@ const HttpManager = {
   // =======================> 歌手 API  完成
   // 返回所有歌手
   getAllSinger: () => get("singer"),
+  //返回推荐歌手
+  getRecommendSinger: () => get("singer/randomSinger"),
+
+  getSingerListOfLikeName: (keywords) => get(`singer/name/detail?name=${keywords}`),
   // 通过性别对歌手分类
   getSingerOfSex: (sex) => get(`singer/sex/detail?sex=${sex}`),
 

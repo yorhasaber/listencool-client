@@ -6,9 +6,11 @@
   </div>
 
 
-    <play-list class="play-list-container" title="推荐歌单" path="song-sheet-detail" :playList="songList"></play-list>
+    <play-list class="play-list-container" title="推荐歌单" path="song-sheet-detail" :playList="recommendList"></play-list>
 
-    <SingerList class="play-list-container" title="推荐艺人" path="singer-detail" :playList="singerList"></SingerList>
+<!--<SingerList class="play-list-container" title="推荐艺人" path="singer-detail" :playList="recommendSingerList"></SingerList>-->
+
+    <singer-list class="play-list-container" title="推荐艺人" path="singer-detail" :playList="recommendSingerList"></singer-list>
 
     <play-list class="play-list-container" title="新专速递" path="singer-detail" :playList="singerList"></play-list>
   </div>
@@ -28,7 +30,8 @@ import { HttpManager } from "@/api";
 import mixin from "@/mixins/mixin";
 import { ref, onMounted } from "vue";
 
-
+const recommendList =ref([]);//推荐歌单
+const recommendSingerList =ref([]);//推荐歌手
 const songList = ref([]); // 歌单列表
 const singerList = ref([]); // 歌手列表
 const swiperList = ref([]);// 轮播图 每次都在进行查询
@@ -39,6 +42,10 @@ try {
     swiperList.value = (res as ResponseBody).data.sort();
   });
 
+  HttpManager.getRecommendList().then((res) => {
+    recommendList.value = (res as ResponseBody).data.sort().slice(0, 10);
+  });
+
   HttpManager.getSongList().then((res) => {
     songList.value = (res as ResponseBody).data.sort().slice(0, 10);
   });
@@ -46,6 +53,11 @@ try {
   HttpManager.getAllSinger().then((res) => {
     singerList.value = (res as ResponseBody).data.sort().slice(0, 10);
   });
+
+  HttpManager.getRecommendSinger().then((res) => {
+    recommendSingerList.value = (res as ResponseBody).data.sort().slice(0, 10);
+  });
+
 
   onMounted(() => {
     changeIndex(NavName.Home);

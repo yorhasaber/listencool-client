@@ -13,12 +13,14 @@ import { defineComponent } from "vue";
 import LiNav from "@/components/layouts/LiNav.vue";
 import SearchSong from "./SearchSong.vue";
 import SearchSongList from "./SearchSongList.vue";
+import SearchSinger  from "./SearchSinger.vue"
 
 export default defineComponent({
   components: {
     LiNav,
     SearchSong,
     SearchSongList,
+    SearchSinger,
   },
   data() {
     return {
@@ -33,7 +35,7 @@ export default defineComponent({
         },
         {
           name:"歌手",
-          value:"SearchSongList",
+          value:"SearchSinger",
         },
       ],
       activeName: "歌曲",
@@ -55,7 +57,7 @@ export default defineComponent({
 
 .search {
   margin: auto;
-  width: 900px;
+  width: 1100px;
 
   .search-list {
     min-height: 480px;
