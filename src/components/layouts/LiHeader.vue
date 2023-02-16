@@ -5,8 +5,8 @@
 
     <!--图标-->
     <div class="header-logo" @click="goPage()">
-      <li-icon :icon="iconList.ERJI"></li-icon>
-<!--      <img src="/images/logo/logo-2.png" alt="logo"  class="one_logo"/>-->
+<!--      <li-icon :icon="iconList.ERJI"></li-icon>-->
+      <img src="/images/logo/logo2.svg" alt="logo"  class="one_logo"/>
       <span class="logo" >Listen Cool</span>
     </div>
     <div class="navigation-buttons">
@@ -185,7 +185,7 @@ export default defineComponent({
 
 .one_logo{
   width: 30px;
-  height: 30px;
+  //height: 30px;
   margin-right: 12px;
   cursor: pointer;
   img {
@@ -246,8 +246,13 @@ export default defineComponent({
     font-size: 23px;
     font-weight: bold;
     text-align: center;
+    @media (max-width: 1000px) {
+      //font-size: 10px;
+      display: none;
+    }
     @media (max-width: 900px) {
-      font-size: 19px;
+      //font-size: 19px;
+      display: none;
     }
     @media (max-width: 890px) {
       display: none;
@@ -255,11 +260,21 @@ export default defineComponent({
   }
 
   .one_logo{
-    width: 1.9rem;
+    //width: 1.9rem;
+    width: 5.9rem;
     vertical-align: middle;
+    /**
+    width: 1.9rem;
+     vertical-align: middle;
+     */
 
     //width: 30px;
-    margin-right: 12px;
+    //margin-right: 12px;
+    //margin-right: -28px;
+    //margin-left: 43px;
+
+    margin-right: -33px;
+    margin-left: -49px;
     cursor: pointer;
     img {
       vertical-align: middle;
@@ -434,6 +449,10 @@ nav.has-custom-titlebar {
   justify-content: center;
   text-transform: uppercase;
   user-select: none;
+  //padding: {
+  //  right: 2vw;
+  //  left: 2vw;
+  //}
 
   a {
     -webkit-app-region: no-drag;

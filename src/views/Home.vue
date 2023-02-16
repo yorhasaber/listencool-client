@@ -2,7 +2,7 @@
 
   <div class="body-tg">
   <div class="banner">
-<!--    <Banner/>-->
+    <Banner/>
   </div>
 
 

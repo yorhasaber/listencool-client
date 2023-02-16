@@ -52,6 +52,8 @@ declare module '@vue/runtime-core' {
     NBackTop: typeof import('naive-ui')['NBackTop']
     NButton: typeof import('naive-ui')['NButton']
     NCard: typeof import('naive-ui')['NCard']
+    NCarousel: typeof import('naive-ui')['NCarousel']
+    NCarouselItem: typeof import('naive-ui')['NCarouselItem']
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
     NDialogProvider: typeof import('naive-ui')['NDialogProvider']
     NH6: typeof import('naive-ui')['NH6']
