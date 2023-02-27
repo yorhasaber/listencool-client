@@ -31,7 +31,8 @@ const HttpManager = {
   getSongListOfLikeTitle: (keywords) => get(`songList/likeTitle/detail?title=${keywords}`),
   // 返回歌单里指定歌单ID的歌曲
   getListSongOfSongId: (songListId) => get(`listSong/detail?songListId=${songListId}`),
-
+  //获取最新歌单
+  getLatestPlaylist:()=> get("songList/newSongList"),
   // =======================> 歌手 API  完成
   // 返回所有歌手
   getAllSinger: () => get("singer"),

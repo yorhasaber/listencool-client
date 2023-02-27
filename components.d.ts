@@ -72,6 +72,7 @@ declare module '@vue/runtime-core' {
     PlayerCover: typeof import('./src/components/Player/PlayerCover.vue')['default']
     PlayerRecord: typeof import('./src/components/Player/PlayerRecord.vue')['default']
     PlayList: typeof import('./src/components/PlayList.vue')['default']
+    PlayNewList: typeof import('./src/components/PlayNewList.vue')['default']
     Provider: typeof import('./src/components/Provider/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

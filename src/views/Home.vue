@@ -12,7 +12,7 @@
 
     <singer-list class="play-list-container" title="推荐艺人" path="singer-detail" :playList="recommendSingerList"></singer-list>
 
-    <play-list class="play-list-container" title="新专速递" path="singer-detail" :playList="singerList"></play-list>
+    <play-list class="play-list-container" title="新专速递" path="song-sheet-detail" :playList="NewAlbum"></play-list>
   </div>
 
 
@@ -34,6 +34,7 @@ const recommendList =ref([]);//推荐歌单
 const recommendSingerList =ref([]);//推荐歌手
 const songList = ref([]); // 歌单列表
 const singerList = ref([]); // 歌手列表
+const NewAlbum = ref([]); //新歌单列表
 const swiperList = ref([]);// 轮播图 每次都在进行查询
 const { changeIndex } = mixin();
 try {
@@ -44,6 +45,10 @@ try {
 
   HttpManager.getRecommendList().then((res) => {
     recommendList.value = (res as ResponseBody).data.sort().slice(0, 10);
+  });
+
+  HttpManager.getLatestPlaylist().then((res) => {
+    NewAlbum.value = (res as ResponseBody).data.sort().slice(0, 5);
   });
 
   HttpManager.getSongList().then((res) => {
