@@ -103,4 +103,4 @@ const HttpManager = {
 
 
 
-export { HttpManager };
+export { HttpManager};

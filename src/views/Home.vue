@@ -6,6 +6,17 @@
   </div>
 
 
+      <div>
+        <Hitokoto></Hitokoto>
+      </div>
+
+<!--    <n-grid class="recommendation" cols="4" item-responsive x-gap="20">-->
+<!--      <n-grid-item span="1 950:2">-->
+<!--        <Hitokoto/>-->
+<!--      </n-grid-item>-->
+<!--    </n-grid>-->
+
+
     <play-list class="play-list-container" title="推荐歌单" path="song-sheet-detail" :playList="recommendList"></play-list>
 
 <!--<SingerList class="play-list-container" title="推荐艺人" path="singer-detail" :playList="recommendSingerList"></SingerList>-->
@@ -24,6 +35,7 @@
 <script lang="ts" setup>
 import PlayList from "@/components/PlayList.vue";
 import SingerList from "@/components/SingerList.vue";
+import Hitokoto from  "@/components/Hitokoto/index.vue"
 import Banner from "@/components/Banner/index.vue";
 import {  NavName } from "@/enums";
 import { HttpManager } from "@/api";
