@@ -1,12 +1,10 @@
 <template>
-  <transition name="fade">
   <div class="padailysongs" >
     <div class="text"  @click="updateHitokoto">
       <span class="title">{{hitokotoData.text}}</span>
       <span class="from">-「&nbsp;{{ hitokotoData.from }} 🤗-{{hitokotoData.creator}}&nbsp;」</span>
     </div>
   </div>
-  </transition>
 </template>
 
 <script setup>
@@ -98,6 +96,9 @@ onUnmounted(() => {
       }
       .from {
         display: none;
+      }
+      .title {
+        font-size: 20px;
       }
     }
     .from {

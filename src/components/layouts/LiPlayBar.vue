@@ -150,12 +150,13 @@ export default defineComponent({
     }
 
     async function changeCollection() {
+      // 检查当前用户是否已登录
       if (!checkStatus()) return;
-
+      // 获取用户ID和歌曲ID
       const userId = userIdVO.value;
       const type = '0'; //这里要看看 不能直接写死
       const songId = songIdVO.value;
-
+      // 根据"isCollection"变量的值，执行添加或删除歌曲的操作
       const result = isCollection.value
           ? ((await HttpManager.deleteCollection(userIdVO.value, songIdVO.value)) as ResponseBody)
           : ((await HttpManager.setCollection({userId, type, songId})) as ResponseBody);
@@ -268,7 +269,7 @@ export default defineComponent({
       this.$store.commit("setShowAside", !this.showAside);
     },
     bigPlate() {
-      this.$store.commit("setshowbigPlayer", "ture");
+      this.$store.commit("setshowbigPlayer", true);
     },
     // 控制音乐播放 / 暂停
     togglePlay() {
@@ -301,15 +302,20 @@ export default defineComponent({
     // 下一首
     next() {
       if (this.playState === Icon.LUANXU) {
+        // 随机生成一个播放索引
         let playIndex = Math.floor(Math.random() * this.currentPlayList.length);
+        // 确保新的播放索引不等于当前的播放索引
         playIndex = playIndex === this.currentPlayIndex ? playIndex + 1 : playIndex;
         this.$store.commit("setCurrentPlayIndex", playIndex);
         this.toPlay(this.currentPlayList[playIndex].url);
       } else if (this.currentPlayIndex !== -1 && this.currentPlayList.length > 1) {
+        // 检查当前播放索引是否小于播放列表长度减一
         if (this.currentPlayIndex < this.currentPlayList.length - 1) {
+          // 如果是，则将当前播放索引加一，使用"setCurrentPlayIndex"方法设置新的播放索引，并调用"toPlay"方法来播放相应的歌曲
           this.$store.commit("setCurrentPlayIndex", this.currentPlayIndex + 1);
           this.toPlay(this.currentPlayList[this.currentPlayIndex].url);
         } else {
+          //将播放索引设置为0，并调用"toPlay"方法来播放播放列表中的第一首歌曲
           this.$store.commit("setCurrentPlayIndex", 0);
           this.toPlay(this.currentPlayList[0].url);
         }
