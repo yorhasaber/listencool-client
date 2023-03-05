@@ -1,38 +1,10 @@
 <template>
-<!--  <el-container>-->
-<!--    <el-aside class="album-slide">-->
-<!--      <el-image class="album-img" fit="contain" :src="attachImageUrl(songDetails.pic)" />-->
-<!--      <h3 class="album-info">{{ songDetails.title }}</h3>-->
-<!--    </el-aside>-->
-
-<!--    <el-main class="album-main">-->
-<!--      <h1>简介</h1>-->
-<!--      <p>{{ songDetails.introduction }}</p>-->
-<!--      &lt;!&ndash;评分&ndash;&gt;-->
-<!--      <div class="album-score">-->
-<!--        <div>-->
-<!--          <h3>歌单评分</h3>-->
-<!--          <el-rate v-model="rank" allow-half disabled></el-rate>-->
-<!--        </div>-->
-<!--        <span>{{ rank * 2 }}</span>-->
-<!--        <div>-->
-<!--          <h3>{{ assistText }} {{ score * 2 }}</h3>-->
-<!--          <el-rate allow-half v-model="score" :disabled="disabledRank" @click="pushValue()"></el-rate>-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      &lt;!&ndash;歌曲&ndash;&gt;-->
-<!--      <song-list class="album-body" :songList="currentSongList"></song-list>-->
-<!--      <comment :playId="songListId" :type="1"></comment>-->
-<!--    </el-main>-->
-
-<!--  </el-container>-->
 <main>
   <div class="playlist" >
     <div class="left">
       <div class="cover">
         <n-avatar class="coverImg" :src="attachImageUrl(songDetails.pic)" fallback-src="/images/pic/default.png"/>
-        <img src="https://music.imsyy.top/images/pic/album.png" class="album" alt="album" />
+        <img src="/images/pic/album.png" class="album" alt="album" />
       </div>
       <div class="intr">
         <span class="name">歌单简介</span>
@@ -158,11 +130,16 @@ export default defineComponent({
       const result = (await HttpManager.getRankOfSongListId(id)) as ResponseBody;
       nowRank.value = result.data / 2;
     }
-    async function getUserRank(userId, songListId) {
-      const result = (await HttpManager.getUserRank(userId, songListId)) as ResponseBody;
-      nowScore.value = result.data / 2;
-      disabledRank.value = true;
-      assistText.value = "已评价";
+    async function getUserRank(userId, songListId){
+      try {
+        const result = await HttpManager.getUserRank(userId, songListId)  as ResponseBody;
+        nowScore.value = result.data / 2;
+        disabledRank.value = true;
+        assistText.value = "已评价";
+      } catch (error) {
+        if(typeof error === "undefined" || error === null)
+        console.error(error);
+      }
     }
     // 提交评分
     async function pushValue() {
