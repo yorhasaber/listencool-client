@@ -23,16 +23,16 @@
                 <input type="submit" class="submit" @click="handleLoginIn" value="登录">
               </p>
             </form>
-            <div class="options">
-              <div class="separator">
-                <p>使用其他方式登录</p>
-              </div>
-              <ul>
-                <li><a href="#"><i class="ri-smartphone-fill ri-2x"></i></a></li>
-                <li><a href="#"><i class="ri-playstation-fill ri-2x"></i></a></li>
-                <li><a href="#"><i class="ri-xbox-fill ri-2x"></i></a></li>
-              </ul>
-            </div>
+<!--            <div class="options">-->
+<!--              <div class="separator">-->
+<!--                <p>使用其他方式登录</p>-->
+<!--              </div>-->
+<!--              <ul>-->
+<!--                <li><a href="#"><i class="ri-smartphone-fill ri-2x"></i></a></li>-->
+<!--                <li><a href="#"><i class="ri-playstation-fill ri-2x"></i></a></li>-->
+<!--                <li><a href="#"><i class="ri-xbox-fill ri-2x"></i></a></li>-->
+<!--              </ul>-->
+<!--            </div>-->
           </div>
         </div>
       </div>

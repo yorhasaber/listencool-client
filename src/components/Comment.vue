@@ -54,6 +54,7 @@
         </span>
             <span class="like" @click="setSupport(item.id, item.up,userId)">
           <n-icon size="20px" :component="ThumbUpAltOutlined"/>{{ item.up }}
+<!--         <n-icon  size="20px" :component="item.up ? ThumbUpOffAltRound : ThumbUpAltOutlined"/>-->
          </span>
          <span class="delete">
          <n-icon size="20px" :component="DeleteFilled" v-if="item.userId === userId" @click="deleteComment(item.id,index)"/>
@@ -68,7 +69,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, getCurrentInstance, ref, toRefs, computed, watch, reactive, onMounted} from "vue";
+import {defineComponent, getCurrentInstance, ref, toRefs, computed, watch, reactive, onMounted, watchEffect} from "vue";
 import {useStore} from "vuex";
 import {Delete} from "@element-plus/icons-vue";
 import LiIcon from "@/components/layouts/LiIcon.vue";
@@ -80,7 +81,8 @@ import {
   AccessTimeFilled,
   FmdGoodOutlined,
   ThumbUpAltOutlined,
-  DeleteFilled
+  DeleteFilled,
+  ThumbUpOffAltRound
 
 } from "@vicons/material";
 import {getBaseURL} from "@/api/request";
@@ -107,6 +109,24 @@ export default defineComponent({
     });
     const userIdVO = computed(() => store.getters.userId);
     const songIdVO = computed(() => store.getters.songId);
+
+
+
+    const liked = ref(false)
+
+    const icon = ref(ThumbUpOffAltRound)
+    function toggleLike() {
+      liked.value = !liked.value
+    }
+
+    watchEffect(() => {
+      if (liked.value) {
+        icon.value = ThumbUpAltOutlined
+      } else {
+        icon.value = ThumbUpOffAltRound
+      }
+    })
+
     watch(songIdVO, () => {
       getComment();
     });
@@ -213,7 +233,10 @@ export default defineComponent({
       AccessTimeFilled,
       FmdGoodOutlined,
       ThumbUpAltOutlined,
-      DeleteFilled
+      ThumbUpOffAltRound,
+      DeleteFilled,
+      icon,
+      toggleLike,
     };
   },
 });

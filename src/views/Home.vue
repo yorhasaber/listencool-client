@@ -63,13 +63,13 @@ try {
     NewAlbum.value = (res as ResponseBody).data.sort().slice(0, 5);
   });
 
-  HttpManager.getSongList().then((res) => {
-    songList.value = (res as ResponseBody).data.sort().slice(0, 10);
-  });
+  // HttpManager.getSongList().then((res) => {
+  //   songList.value = (res as ResponseBody).data.sort().slice(0, 10);
+  // });
 
-  HttpManager.getAllSinger().then((res) => {
-    singerList.value = (res as ResponseBody).data.sort().slice(0, 10);
-  });
+  // HttpManager.getAllSinger().then((res) => {
+  //   singerList.value = (res as ResponseBody).data.sort().slice(0, 10);
+  // });
 
   HttpManager.getRecommendSinger().then((res) => {
     recommendSingerList.value = (res as ResponseBody).data.sort().slice(0, 10);

@@ -18,35 +18,35 @@
               <input type="text" v-model="registerForm.username" placeholder="用户名">
             </p>
             <p>
-              <input type="text" v-model="registerForm.username" placeholder="密码">
+              <input type="password" v-model="registerForm.password" placeholder="密码">
             </p>
             <p>
-              <input type="text" v-model="registerForm.username" placeholder="手机号">
+              <input type="text" v-model="registerForm.phoneNum" placeholder="手机号">
             </p>
+<!--            <p>-->
+<!--              <input type="text" v-model="registerForm.username" placeholder="请再次输入密码">-->
+<!--            </p>-->
             <p>
-              <input type="text" v-model="registerForm.username" placeholder="请再次输入密码">
-            </p>
-            <p>
-              <input type="submit" class="submit" @click="handleLoginIn" value="注册">
+              <input type="submit" class="submit" @click="handleSignUp" value="注册">
             </p>
           </form>
-          <div class="options">
-            <div class="separator">
-              <p>使用其他方式登录</p>
-            </div>
-            <ul>
-              <li><a href="#"><i class="ri-smartphone-fill ri-2x"></i></a></li>
-              <li><a href="#"><i class="ri-playstation-fill ri-2x"></i></a></li>
-              <li><a href="#"><i class="ri-xbox-fill ri-2x"></i></a></li>
-            </ul>
-          </div>
+<!--          <div class="options">-->
+<!--            <div class="separator">-->
+<!--              <p>使用其他方式登录</p>-->
+<!--            </div>-->
+<!--            <ul>-->
+<!--              <li><a href="#"><i class="ri-smartphone-fill ri-2x"></i></a></li>-->
+<!--              <li><a href="#"><i class="ri-playstation-fill ri-2x"></i></a></li>-->
+<!--              <li><a href="#"><i class="ri-xbox-fill ri-2x"></i></a></li>-->
+<!--            </ul>-->
+<!--          </div>-->
         </div>
       </div>
     </div>
   </div>
   </body>
 
-  <div class="sign">
+  <div v-show="false" class="sign">
     <el-form ref="signUpForm" label-width="70px" status-icon :model="registerForm" :rules="SignUpRules">
       <el-form-item prop="username" label="用户名">
         <el-input v-model="registerForm.username" placeholder="用户名"></el-input>

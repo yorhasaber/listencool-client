@@ -1,12 +1,12 @@
 <template>
   <div class="setting">
     <div class="title">全局设置</div>
-    <n-h6 prefix="bar"> 基础设置 </n-h6>
-    <n-card class="set-item">
-      <div class="name">站点模式</div>
-      <n-select class="set" v-model:value="theme" :options="darkOptions" />
-      <span class="tip">实验性功能，正在开发中</span>
-    </n-card>
+<!--    <n-h6 prefix="bar"> 基础设置 </n-h6>-->
+<!--    <n-card class="set-item">-->
+<!--      <div class="name">站点模式</div>-->
+<!--      <n-select class="set" v-model:value="theme" :options="darkOptions" />-->
+<!--      <span class="tip">实验性功能，正在开发中</span>-->
+<!--    </n-card>-->
 <!--    <n-card class="set-item">-->
 <!--      <div class="name">-->
 <!--        列表点击方式-->
@@ -39,17 +39,17 @@
         :options="lyricsPositionOptions"
       />
     </n-card>
-    <n-card class="set-item">
-      <div class="name">
-        显示音乐频谱
-        <span class="tip">实验性功能，正在开发中</span>
-      </div>
-      <n-switch
-        v-model:value="musicFrequency"
-        :round="false"
-        @click="changeMusicFrequency"
-      />
-    </n-card>
+<!--    <n-card class="set-item">-->
+<!--      <div class="name">-->
+<!--        显示音乐频谱-->
+<!--        <span class="tip">实验性功能，正在开发中</span>-->
+<!--      </div>-->
+<!--      <n-switch-->
+<!--        v-model:value="musicFrequency"-->
+<!--        :round="false"-->
+<!--        @click="changeMusicFrequency"-->
+<!--      />-->
+<!--    </n-card>-->
   </div>
 </template>
 
